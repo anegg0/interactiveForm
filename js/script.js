@@ -19,6 +19,7 @@ const selectorDesigns = document.querySelector('#design')
 const selectorColor = document.querySelector('#color')
 selectorColor.style.visibility = 'hidden';
 const colorDiv = document.querySelector('#shirt-colors')
+colorDiv.style.visibility = 'hidden';
 
 selectorJobs.addEventListener('change', e => {
 console.log(e.target.value)
