@@ -37,9 +37,10 @@ selectorDesigns.addEventListener('change', e => {
         
 for (let i = 0; i < jsPuns.length; i++) {
 
- jsPuns[i].style.visibility = 'visible';
-//  console.log(jsPuns[i].value)
 colorDiv.style.visibility = 'visible'
+ jsPuns[i].style.visibility = 'visible';
+ heartJS[i].style.visibility = 'hidden';
+//  console.log(jsPuns[i].value)
  console.log(jsPuns.length)
 
 
@@ -50,7 +51,10 @@ colorDiv.style.visibility = 'visible'
     } else {
 
 for (let i = 0; i < heartJS.length; i++) {
+
+colorDiv.style.visibility = 'visible'
  heartJS[i].style.visibility = 'visible';
+ jsPuns[i].style.visibility = 'hidden';
  console.log(heartJS[i].value)
 }    
 }
