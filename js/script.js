@@ -51,18 +51,18 @@ selectorDesigns.addEventListener("change", (e) => {
 /* This listener will evaluates the data-day-and-time of ticked checkboxes and disable checkboxes that 
 match concurrent time slots
 */ 
-const registerActivities = document.querySelector("#activities-box");
-registerActivities.addEventListener("change", (e) => {
-  const clicked = e.target;
-  const clickedTypeTime = clicked.getAttribute("data-day-and-time");
-  const activities = registerActivities.children;
-  for (let i = 0; i < activities.length; i++) {
-    if (clickedTypeTime == activities[i].children[2].innerHTML) {
-      console.log(clickedTypeTime);
-      activities[i].children[0].disabled = "true";
-    }
-  }
-});
+// const registerActivities = document.querySelector("#activities-box");
+// registerActivities.addEventListener("change", (e) => {
+//   const clicked = e.target;
+//   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
+//   const activities = registerActivities.children;
+//   for (let i = 0; i < activities.length; i++) {
+//     if (clickedTypeTime == activities[i].children[2].innerHTML) {
+//       console.log(clickedTypeTime);
+//       activities[i].children[0].disabled = "true";
+//     }
+//   }
+// });
 
 
 /* This listener will evaluates the cost    
@@ -74,6 +74,14 @@ activitiesR.addEventListener("change", (e) => {
   const clicked = e.target;
   let clickedCost = clicked.getAttribute("data-cost");
   clickedCost = (Number(clickedCost));
-  console.log(typeof clickedCost);
+  if (clicked.checked) {
+  totalCost += clickedCost;
+  } else {
+  totalCost -= clickedCost;
+  }
+ total.textContent = `Total: $${totalCost}`; 
+  
+  console.log(totalCost);
+//   console.log(typeof clickedCost);
   const activities = activitiesR.children;
 });
