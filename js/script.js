@@ -85,3 +85,38 @@ activitiesR.addEventListener("change", (e) => {
 //   console.log(typeof clickedCost);
   const activities = activitiesR.children;
 });
+
+
+
+// payment module
+
+const payment = document.querySelector('#payment');
+// const paymentOptions = paymentMethod.children; 
+
+
+
+// const creditCardExpMonth = document.querySelector('.credit-card');
+// const creditCardYearBox = document.querySelector('.year-box');
+// const creditCardNumber = document.querySelector('.credit-card-box');
+// const creditCardZip = document.querySelector('.zip-box');
+// const creditCardCvv = document.querySelector('.cvv-box');
+const paypal = document.querySelector('.paypal');
+const bitcoin = document.querySelector('.bitcoin');
+// creditCardExpMonth.style.visibility = 'hidden';
+// creditCardYearBox.style.visibility = 'hidden';
+// creditCardNumber.style.visibility = 'hidden';
+// creditCardZip.style.visibility = 'hidden';
+// creditCardCvv.style.visibility = 'hidden';
+// const creditCard = payment.children[2].setAttribute = 'selected';
+paypal.style.visibility = 'hidden';
+bitcoin.style.visibility = 'hidden';
+
+payment.addEventListener("change", (e) => {
+  const clicked = e.target.value;
+  console.log(clicked);
+  if (clicked == 'paypal') {
+paypal.style.visibility = 'visible';
+  } else if (clicked == 'bitcoin'){
+bitcoin.style.visibility = 'visible';
+}
+})
