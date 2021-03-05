@@ -146,6 +146,7 @@ input[type="radio"] {
 
 input[type="checkbox"]:disabled {
   cursor: not-allowed;
+  background-color: rgba(70, 65, 67, 0.1)
 }
 
 select {
