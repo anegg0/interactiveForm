@@ -134,23 +134,56 @@ return creditCardNumberIsValid
 }
 
 function zipVerifier(creditCardZip) {
-const creditCardZipValue = creditCardZip.value;
+const creditCardZipValue = creditCardZip.getElementsByTagName('INPUT')[11].value;
+
+console.log(creditCardZipValue)
 const zipNumberIsValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(creditCardZipValue);
-  // console.log('zc: ' + zipNumberIsValid);
+  console.log('zc: ' + zipNumberIsValid);
   return zipNumberIsValid
 }
 
 function CvvVerifier(creditCardCvv) {
 const creditCardCvvValue = creditCardCvv.value;
 const CvvNumberIsValid = /^[0-9]{3,4}$/.test(creditCardCvvValue);
-  // console.log('cvv: ' + CvvNumberIsValid);
+  console.log('cvv: ' + CvvNumberIsValid);
 }
 
-
 form.addEventListener('submit', (e) => {
-  e.preventDefault(); 
-  let name_Is_Valid = nameVerifier(e.target);
-  if (name_Is_Valid != true) {
+//   e.preventDefault(); 
+//   let name_Is_Valid = nameVerifier(e.target);
+//   if (name_Is_Valid != true) {
+//     console.log("Not Valid");
+//     e.preventDefault();
+//   } else {
+//     console.log("Valid!");
+//     e.preventDefault();
+//   }
+
+//  e.preventDefault(); 
+//   let email_Is_Valid = emailVerifier(e.target);
+//   console.log('email is: '+ email_Is_Valid)
+//   if (email_Is_Valid != true) {
+//     console.log("Not Valid!");
+//     e.preventDefault();
+//   } else {
+//     console.log("Valid!");
+//     e.preventDefault();
+//   }
+
+//  e.preventDefault(); 
+//  let creditCardNumber_Is_Valid = cardNumberVerifier(e.target)
+//   if (creditCardNumber_Is_Valid != true) {
+//     console.log("Not Valid!");
+//     e.preventDefault();
+//   } else {
+//     console.log("Valid!");
+//     e.preventDefault();
+//   }
+
+e.preventDefault(); 
+ let creditCardZip_Is_Valid = zipVerifier(e.target)
+ console.log(e.target)
+  if (creditCardZip_Is_Valid != true) {
     console.log("Not Valid!");
     e.preventDefault();
   } else {
@@ -158,25 +191,4 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
   }
 
- e.preventDefault(); 
-  let email_Is_Valid = emailVerifier(e.target);
-  console.log('email is: '+ email_Is_Valid)
-  if (email_Is_Valid != true) {
-    console.log("Not Valid!");
-    e.preventDefault();
-  } else {
-    console.log("Valid!");
-    e.preventDefault();
-  }
-
- e.preventDefault(); 
- let creditCardNumber_Is_Valid = cardNumberVerifier(e.target)
-  if (creditCardNumber_Is_Valid != true) {
-    console.log("Not Valid!");
-    e.preventDefault();
-  } else {
-    console.log("Valid!");
-    e.preventDefault();
-  }
-// CvvVerifier(creditCardCvv);
 });
