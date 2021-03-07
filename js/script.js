@@ -135,7 +135,6 @@ return creditCardNumberIsValid
 
 function zipVerifier(creditCardZip) {
 const creditCardZipValue = creditCardZip.getElementsByTagName('INPUT')[11].value;
-
 console.log(creditCardZipValue)
 const zipNumberIsValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(creditCardZipValue);
   console.log('zc: ' + zipNumberIsValid);
@@ -143,9 +142,11 @@ const zipNumberIsValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(creditCardZipValue);
 }
 
 function CvvVerifier(creditCardCvv) {
-const creditCardCvvValue = creditCardCvv.value;
+const creditCardCvvValue = creditCardCvv.getElementsByTagName('INPUT')[12].value;
+console.log('cvv value is: ' + creditCardCvvValue);
 const CvvNumberIsValid = /^[0-9]{3,4}$/.test(creditCardCvvValue);
   console.log('cvv: ' + CvvNumberIsValid);
+  return CvvNumberIsValid
 }
 
 form.addEventListener('submit', (e) => {
@@ -180,15 +181,23 @@ form.addEventListener('submit', (e) => {
 //     e.preventDefault();
 //   }
 
+// e.preventDefault(); 
+//  let creditCardZip_Is_Valid = zipVerifier(e.target)
+//   if (creditCardZip_Is_Valid != true) {
+//     console.log("Not Valid!");
+//     e.preventDefault();
+//   } else {
+//     console.log("Valid!");
+//     e.preventDefault();
+//   }
+
 e.preventDefault(); 
- let creditCardZip_Is_Valid = zipVerifier(e.target)
- console.log(e.target)
-  if (creditCardZip_Is_Valid != true) {
+ let creditCardCvv_Is_Valid = CvvVerifier(e.target)
+  if (creditCardCvv_Is_Valid != true) {
     console.log("Not Valid!");
     e.preventDefault();
   } else {
     console.log("Valid!");
     e.preventDefault();
   }
-
 });
