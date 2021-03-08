@@ -234,6 +234,8 @@ form.addEventListener("submit", (e) => {
   let creditCardCvv_Is_Valid = CvvVerifier(e.target);
   if (creditCardCvv_Is_Valid != true) {
     console.log("Not Valid!");
+      e.target.classList.add('not-valid');
+      e.target.classList.remove('valid');
     e.preventDefault();
   } else {
     console.log("Valid!");
