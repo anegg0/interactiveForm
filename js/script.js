@@ -188,6 +188,18 @@ function CvvVerifier(creditCardCvv) {
   return CvvNumberIsValid;
 }
 
+function validationPass(element) {
+  element.parentElement.classList.add('valid');
+  element.parentElement.classList.remove('not-valid');
+  element.parentElement.lastElementChild.display = 'none';
+ }
+
+ function validationFail(element){
+   element.parentElement.classList.add('not-valid');
+   element.parentElement.classList.remove('valid');
+   element.parentElement.lastElementChild.visibility = 'visible';
+ }
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   let name_Is_Valid = nameVerifier(e.target);
@@ -212,35 +224,37 @@ form.addEventListener("submit", (e) => {
 
   e.preventDefault();
   let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
+  const clicked3 = document.querySelector("#cc-num");
+  const hightlightedCcNumber = clicked3.parentElement;
   if (creditCardNumber_Is_Valid != true) {
-    console.log("Not Valid!");
+     validationFail(hightlightedCcNumber);
     e.preventDefault();
-  } else {
-    console.log("Valid!");
+    } else {
+    validationPass(hightlightedCcNumber);
     e.preventDefault();
   }
-
+  
   e.preventDefault();
   let creditCardZip_Is_Valid = zipVerifier(e.target);
+  const clicked4 = document.querySelector("#zip");
+    const hightlightedZip = clicked4.parentElement;
   if (creditCardZip_Is_Valid != true) {
-    console.log("Not Valid!");
+     validationFail(hightlightedZip);
     e.preventDefault();
-  } else {
-    console.log("Valid!");
+    } else {
+    validationPass(hightlightedZip);
     e.preventDefault();
   }
 
   e.preventDefault();
   let creditCardCvv_Is_Valid = CvvVerifier(e.target);
+    const clicked5 = document.querySelector("#cvv");
+    const hightlightedCvv = clicked5.parentElement;
   if (creditCardCvv_Is_Valid != true) {
-    const clicked = document.querySelector("#cvv");
-    const hightlightedElement = clicked.parentElement;
-    console.log("Not Valid!");
-    hightlightedElement.classList.add("not-valid");
-    console.log(clickedT);
+     validationFail(hightlightedCvv);
     e.preventDefault();
-  } else {
-    console.log("Valid!");
+    } else {
+    validationPass(hightlightedCvv);
     e.preventDefault();
   }
 });
