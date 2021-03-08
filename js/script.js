@@ -146,6 +146,7 @@ const creditCardCvv = document.querySelector("#cvv");
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
+  console.log(nameValue);
   const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
   return nameIsValid;
 }
@@ -203,22 +204,27 @@ function validationPass(element) {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   let name_Is_Valid = nameVerifier(e.target);
+  const clicked1 = document.querySelector("#name");
+  const hightlightedName = clicked1.parentElement;
   if (name_Is_Valid != true) {
-    console.log("Not Valid");
+     validationFail(hightlightedName);
     e.preventDefault();
-  } else {
-    console.log("Valid!");
+    } else {
+    validationPass(hightlightedName);
+    console.log('name is valid')
     e.preventDefault();
   }
 
   e.preventDefault();
   let email_Is_Valid = emailVerifier(e.target);
-  console.log("email is: " + email_Is_Valid);
+  const clicked2 = document.querySelector("#email");
+  const hightlightedEmail = clicked2.parentElement;
   if (email_Is_Valid != true) {
-    console.log("Not Valid!");
+     validationFail(hightlightedEmail);
+    console.log('email is false ')
     e.preventDefault();
-  } else {
-    console.log("Valid!");
+    } else {
+    validationPass(hightlightedEmail);
     e.preventDefault();
   }
 
