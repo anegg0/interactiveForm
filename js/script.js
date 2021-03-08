@@ -107,19 +107,19 @@ payment.addEventListener("change", (e) => {
   console.log(clicked);
   if (clicked == "paypal") {
     paypal.style.visibility = "visible";
-      bitcoin.style.visibility = "hidden";
-      creditCardBox.style.visibility = "hidden";
-      creditCardExpirationBox.style.visibility = "hidden";
+    bitcoin.style.visibility = "hidden";
+    creditCardBox.style.visibility = "hidden";
+    creditCardExpirationBox.style.visibility = "hidden";
   } else if (clicked == "bitcoin") {
     bitcoin.style.visibility = "visible";
-      paypal.style.visibility = "hidden";
-      creditCardBox.style.visibility = "hidden";
-      creditCardExpirationBox.style.visibility = "hidden";
+    paypal.style.visibility = "hidden";
+    creditCardBox.style.visibility = "hidden";
+    creditCardExpirationBox.style.visibility = "hidden";
   } else if (clicked == "credit-card") {
     creditCardBox.style.visibility = "visible";
     creditCardExpirationBox.style.visibility = "visible";
-      paypal.style.visibility = "hidden";
-      bitcoin.style.visibility = "hidden";
+    paypal.style.visibility = "hidden";
+    bitcoin.style.visibility = "hidden";
   }
 });
 // const jobRole = document.querySelector("#payment");
@@ -233,9 +233,11 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   let creditCardCvv_Is_Valid = CvvVerifier(e.target);
   if (creditCardCvv_Is_Valid != true) {
+    const clicked = document.querySelector("#cvv");
+    const hightlightedElement = clicked.parentElement;
     console.log("Not Valid!");
-      e.target.classList.add('not-valid');
-      e.target.classList.remove('valid');
+    hightlightedElement.classList.add("not-valid");
+    console.log(clickedT);
     e.preventDefault();
   } else {
     console.log("Valid!");
