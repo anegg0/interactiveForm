@@ -64,7 +64,6 @@ registerActivities.addEventListener("click", (e) => {
       !clicked.checked &&
       activities[i].children[2].innerHTML == clickedTypeTime
     ) {
-      console.log("give it to me");
       activities[i].children[0].classList.remove("not-valid");
     }
   }
@@ -94,7 +93,6 @@ const payment = document.querySelector("#payment");
 
 const paypal = document.querySelector(".paypal");
 const bitcoin = document.querySelector(".bitcoin");
-// const creditCard = (payment.children[2].setAttribute = "selected");
 const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.visibility = "hidden";
@@ -122,20 +120,9 @@ payment.addEventListener("change", (e) => {
     bitcoin.style.visibility = "hidden";
   }
 });
-// const jobRole = document.querySelector("#payment");
 
-// const jobOther = document.querySelector("#other-job-role");
-// jobOther.style.visibility = "hidden";
-// const selectorJobs = document.querySelector("#title");
-// const allJobs = document.querySelectorAll("#job");
 
-// selectorJobs.addEventListener("change", (e) => {
-//     if (e.target.value == "other") {
-//         jobOther.style.visibility = "visible";
-//     }
-// });
-
-// validation module
+// validation module/accessibility
 
 const form = document.querySelector("form");
 const nameForm = document.querySelector("#name");
@@ -163,7 +150,6 @@ function cardNumberVerifier(creditCardNumber) {
     "INPUT"
   )[10].value;
   console.log(creditCardNumberValue);
-  // console.log('cc: ' + creditCardNumberValue);
   const creditCardNumberIsValid = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/.test(
     creditCardNumberValue
   );
@@ -264,3 +250,20 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
   }
 });
+
+// the below manages checkbox' visibility
+
+const checkboxes = document.querySelectorAll('[type="checkbox"]');
+console.log(checkboxes.length)
+for (let i = 0; i < checkboxes.length; i++) {
+ checkboxes[i].addEventListener("focus", (e) => { 
+   console.log('no')
+ checkboxes[i].parentElement.classList.add('focus');
+ })
+ checkboxes[i].addEventListener("blur", (e) => { 
+   console.log('yes')
+ checkboxes[i].parentElement.classList.remove('focus');
+ })}
+
+
+
