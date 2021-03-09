@@ -93,8 +93,8 @@ const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.visibility = "hidden";
 bitcoin.style.visibility = "hidden";
-creditCardBox.style.visibility = "hidden";
-creditCardExpirationBox.style.visibility = "hidden";
+// creditCardBox.style.visibility = "hidden";
+// creditCardExpirationBox.style.visibility = "hidden";
 
 payment.addEventListener("change", (e) => {
   const clicked = e.target.value;
