@@ -100,7 +100,6 @@ creditCardExpirationBox.style.visibility = "hidden";
 
 payment.addEventListener("change", (e) => {
   const clicked = e.target.value;
-  console.log(clicked);
   if (clicked == "paypal") {
     paypal.style.visibility = "visible";
     bitcoin.style.visibility = "hidden";
@@ -120,7 +119,7 @@ payment.addEventListener("change", (e) => {
 });
 
 
-// This part processes the validity of various form's inputs
+// This part processes form validation
 
 const form = document.querySelector("form");
 const nameForm = document.querySelector("#name");
@@ -131,14 +130,12 @@ const creditCardCvv = document.querySelector("#cvv");
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
-  console.log(nameValue);
   const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
   return nameIsValid;
 }
 
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
-  console.log("emailvalue is :" + `"${emailValue}"`);
   const emailIsValid = /[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
   return emailIsValid;
 }
@@ -147,29 +144,23 @@ function cardNumberVerifier(creditCardNumber) {
   const creditCardNumberValue = creditCardNumber.getElementsByTagName(
     "INPUT"
   )[10].value;
-  console.log(creditCardNumberValue);
   const creditCardNumberIsValid = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/.test(
     creditCardNumberValue
   );
-  console.log(creditCardNumberIsValid);
   return creditCardNumberIsValid;
 }
 
 function zipVerifier(creditCardZip) {
   const creditCardZipValue = creditCardZip.getElementsByTagName("INPUT")[11]
     .value;
-  console.log(creditCardZipValue);
   const zipNumberIsValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(creditCardZipValue);
-  console.log("zc: " + zipNumberIsValid);
   return zipNumberIsValid;
 }
 
 function CvvVerifier(creditCardCvv) {
   const creditCardCvvValue = creditCardCvv.getElementsByTagName("INPUT")[12]
     .value;
-  console.log("cvv value is: " + creditCardCvvValue);
   const CvvNumberIsValid = /^[0-9]{3,4}$/.test(creditCardCvvValue);
-  console.log("cvv: " + CvvNumberIsValid);
   return CvvNumberIsValid;
 }
 
@@ -194,7 +185,6 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     } else {
     validationPass(hightlightedName);
-    console.log('name is valid')
   }
 
   let email_Is_Valid = emailVerifier(e.target);
@@ -202,7 +192,6 @@ form.addEventListener("submit", (e) => {
   const hightlightedEmail = clicked2.parentElement;
   if (email_Is_Valid != true) {
      validationFail(hightlightedEmail);
-    console.log('email is false ')
     e.preventDefault();
     } else {
     validationPass(hightlightedEmail);
@@ -242,14 +231,11 @@ form.addEventListener("submit", (e) => {
 // the below manages checkbox visibility on "focus" or "blur"
 
 const checkboxes = document.querySelectorAll('[type="checkbox"]');
-console.log(checkboxes.length)
 for (let i = 0; i < checkboxes.length; i++) {
  checkboxes[i].addEventListener('focus', (e) => { 
-   console.log('no')
  checkboxes[i].parentElement.classList.add('focus');
  })
  checkboxes[i].addEventListener('blur', (e) => {
-   console.log('yes')
  checkboxes[i].parentElement.classList.remove('focus');
  }
  )}
