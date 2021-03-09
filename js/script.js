@@ -21,7 +21,7 @@ let selectorDesigns = document.querySelector("#design");
 const selectorColor = document.querySelector("#color");
 const colors = selectorColor.children;
 const colorDiv = document.querySelector("#shirt-colors");
-colorDiv.style.visibility = "hidden";
+colorDiv.style.display = "none";
 
 selectorDesigns.addEventListener("change", (e) => {
   const jsPuns = document.querySelectorAll('[data-theme="js puns"]');
@@ -29,15 +29,15 @@ selectorDesigns.addEventListener("change", (e) => {
 
   if (e.target.value == "js puns") {
     for (let i = 0; i < jsPuns.length; i++) {
-      colorDiv.style.visibility = "visible";
-      jsPuns[i].style.visibility = "visible";
-      heartJS[i].style.visibility = "hidden";
+      colorDiv.style.display = "block";
+      jsPuns[i].style.display = "block";
+      heartJS[i].style.display = "none";
     }
   } else if (e.target.value == "heart js") {
     for (let i = 0; i < heartJS.length; i++) {
-      colorDiv.style.visibility = "visible";
-      heartJS[i].style.visibility = "visible";
-      jsPuns[i].style.visibility = "hidden";
+      colorDiv.style.display = "block";
+      heartJS[i].style.display = "block";
+      jsPuns[i].style.display = "none";
     }
   }
 });
