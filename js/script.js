@@ -3,18 +3,17 @@
 const nameElement = document.querySelector("#name");
 nameElement.focus();
 
-// this part hides/shows payment method fields details depending on the payment mode selected
 
 const jobRole = document.querySelector("#payment");
 
 const jobOther = document.querySelector("#other-job-role");
-jobOther.style.visibility = "hidden";
+jobOther.style.display = "none";
 const selectorJobs = document.querySelector("#title");
 const allJobs = document.querySelectorAll("#job");
 
 selectorJobs.addEventListener("change", (e) => {
   if (e.target.value == "other") {
-    jobOther.style.visibility = "visible";
+    jobOther.style.display = "block";
   }
 });
 
