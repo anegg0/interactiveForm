@@ -256,14 +256,18 @@ form.addEventListener("submit", (e) => {
 const checkboxes = document.querySelectorAll('[type="checkbox"]');
 console.log(checkboxes.length)
 for (let i = 0; i < checkboxes.length; i++) {
- checkboxes[i].addEventListener("focus", (e) => { 
+ checkboxes[i].addEventListener('focus', (e) => { 
    console.log('no')
  checkboxes[i].parentElement.classList.add('focus');
  })
- checkboxes[i].addEventListener("blur", (e) => { 
+ checkboxes[i].addEventListener('blur', (e) => {
    console.log('yes')
  checkboxes[i].parentElement.classList.remove('focus');
- })}
+ }
+ )}
+
+//  toggle version:
+
 
 
 
