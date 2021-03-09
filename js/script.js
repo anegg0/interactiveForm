@@ -52,15 +52,14 @@ registerActivities.addEventListener("click", (e) => {
   const activities = registerActivities.children;
   for (let i = 0; i < activities.length; i++) {
     if (clickedTypeTime == activities[i].children[2].innerHTML) {
-      activities[i].children[0].classList.add("disabled");
+      activities[i].children[0].disabled="true";
+      activities[i].children[0].parentElement.classList.add("disabled");
       e.target.classList.remove("disabled");
+      e.target.disabled="false";
     }
   }
   for (let i = 0; i < activities.length; i++) {
-    if (
-      !clicked.checked &&
-      activities[i].children[2].innerHTML == clickedTypeTime
-    ) {
+    if ( !clicked.checked && activities[i].children[2].innerHTML == clickedTypeTime) {
       activities[i].children[0].classList.remove("disabled");
     }
   }
