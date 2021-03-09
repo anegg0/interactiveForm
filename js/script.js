@@ -1,11 +1,9 @@
-"use strict";
 
 /* Variable to store form inputs -  */
-// const form = document.querySelector("form");
 const nameElement = document.querySelector("#name");
 nameElement.focus();
 
-// this part hides/shows credit card details fields when credit card payement is selected
+// this part hides/shows payment method fields details depending on the payment mode selected
 
 const jobRole = document.querySelector("#payment");
 
@@ -69,8 +67,8 @@ registerActivities.addEventListener("click", (e) => {
   }
 });
 
-/* This listener will evaluates the added cost of selected activities
- */
+// This listener evaluates the added cost of selected activities
+
 const activitiesR = document.querySelector("#activities");
 const total = document.querySelector("#activities-cost");
 let totalCost = 0;
@@ -87,7 +85,7 @@ activitiesR.addEventListener("change", (e) => {
   const activities = activitiesR.children;
 });
 
-// payment module
+// this part hides/shows payment method fields details depending on the payment mode selected
 
 const payment = document.querySelector("#payment");
 
@@ -122,7 +120,7 @@ payment.addEventListener("change", (e) => {
 });
 
 
-// validation module/accessibility
+// This part processes the validity of various form's inputs
 
 const form = document.querySelector("form");
 const nameForm = document.querySelector("#name");
@@ -188,7 +186,6 @@ function validationPass(element) {
  }
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
   let name_Is_Valid = nameVerifier(e.target);
   const clicked1 = document.querySelector("#name");
   const hightlightedName = clicked1.parentElement;
@@ -198,10 +195,8 @@ form.addEventListener("submit", (e) => {
     } else {
     validationPass(hightlightedName);
     console.log('name is valid')
-    e.preventDefault();
   }
 
-  e.preventDefault();
   let email_Is_Valid = emailVerifier(e.target);
   const clicked2 = document.querySelector("#email");
   const hightlightedEmail = clicked2.parentElement;
@@ -211,10 +206,8 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     } else {
     validationPass(hightlightedEmail);
-    e.preventDefault();
   }
 
-  e.preventDefault();
   let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
   const clicked3 = document.querySelector("#cc-num");
   const hightlightedCcNumber = clicked3.parentElement;
@@ -223,10 +216,8 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     } else {
     validationPass(hightlightedCcNumber);
-    e.preventDefault();
   }
   
-  e.preventDefault();
   let creditCardZip_Is_Valid = zipVerifier(e.target);
   const clicked4 = document.querySelector("#zip");
     const hightlightedZip = clicked4.parentElement;
@@ -235,10 +226,8 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     } else {
     validationPass(hightlightedZip);
-    e.preventDefault();
   }
 
-  e.preventDefault();
   let creditCardCvv_Is_Valid = CvvVerifier(e.target);
     const clicked5 = document.querySelector("#cvv");
     const hightlightedCvv = clicked5.parentElement;
@@ -247,11 +236,10 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     } else {
     validationPass(hightlightedCvv);
-    e.preventDefault();
   }
 });
 
-// the below manages checkbox' visibility
+// the below manages checkbox visibility on "focus" or "blur"
 
 const checkboxes = document.querySelectorAll('[type="checkbox"]');
 console.log(checkboxes.length)
@@ -265,8 +253,6 @@ for (let i = 0; i < checkboxes.length; i++) {
  checkboxes[i].parentElement.classList.remove('focus');
  }
  )}
-
-//  toggle version:
 
 
 
