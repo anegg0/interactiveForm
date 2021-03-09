@@ -52,8 +52,8 @@ registerActivities.addEventListener("click", (e) => {
   const activities = registerActivities.children;
   for (let i = 0; i < activities.length; i++) {
     if (clickedTypeTime == activities[i].children[2].innerHTML) {
-      activities[i].children[0].classList.add("not-valid");
-      e.target.classList.remove("not-valid");
+      activities[i].children[0].classList.add("disabled");
+      e.target.classList.remove("disabled");
     }
   }
   for (let i = 0; i < activities.length; i++) {
@@ -61,7 +61,7 @@ registerActivities.addEventListener("click", (e) => {
       !clicked.checked &&
       activities[i].children[2].innerHTML == clickedTypeTime
     ) {
-      activities[i].children[0].classList.remove("not-valid");
+      activities[i].children[0].classList.remove("disabled");
     }
   }
 });
