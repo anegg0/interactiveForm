@@ -1,10 +1,8 @@
-
 /* Variable to store form inputs -  */
 const nameElement = document.querySelector("#name");
 nameElement.focus();
 
-
-const jobRole = document.querySelector("#payment");
+// const jobRole = document.querySelector("#payment");
 
 const jobOther = document.querySelector("#other-job-role");
 jobOther.style.display = "none";
@@ -45,25 +43,29 @@ selectorDesigns.addEventListener("change", (e) => {
 /* This listener will evaluates the data-day-and-time of ticked checkboxes and disable checkboxes that 
 match concurrent time slots
 */
-const registerActivities = document.querySelector("#activities-box");
-registerActivities.addEventListener("click", (e) => {
-  const clicked = e.target;
-  const clickedTypeTime = clicked.getAttribute("data-day-and-time");
-  const activities = registerActivities.children;
-  for (let i = 0; i < activities.length; i++) {
-    if (clickedTypeTime == activities[i].children[2].innerHTML) {
-      activities[i].children[0].disabled="true";
-      activities[i].children[0].parentElement.classList.add("disabled");
-      e.target.classList.remove("disabled");
-      e.target.disabled="false";
-    }
-  }
-  for (let i = 0; i < activities.length; i++) {
-    if ( !clicked.checked && activities[i].children[2].innerHTML == clickedTypeTime) {
-      activities[i].children[0].classList.remove("disabled");
-    }
-  }
-});
+// Hi everyone, I am trying to finish module 3 project but I've been stuck on the activity/checkbox part for about two days now.
+
+// My objective is to disable checkboxes which timeline conflicts with the ones that have been checked.
+// My  code does part of that, but there are many issues, 
+// const registerActivities = document.querySelector("#activities-box");
+// registerActivities.addEventListener("click", (e) => {
+//   const clicked = e.target;
+//   // console.log(clicked.checked)
+//   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
+//   const activities = registerActivities.children;
+//   for (let i = 0; i < activities.length; i++) {
+//     if (clickedTypeTime === activities[i].children[2].innerHTML && activities[i].children[0].checked !== true) {
+//       activities[i].children[0].disabled="true";
+//       activities[i].children[0].parentElement.classList.add("disabled");
+//       console.log(activities[i].children[0].checked)
+//     }
+//     if ( activities[i].children[0].checked !== true) {
+//       activities[i].children[0].disabled="false";
+//       activities[i].children[0].parentElement.classList.remove("disabled");
+
+//   }
+//   }
+// });
 
 // This listener evaluates the added cost of selected activities
 
@@ -91,31 +93,30 @@ const paypal = document.querySelector(".paypal");
 const bitcoin = document.querySelector(".bitcoin");
 const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
-paypal.style.visibility = "hidden";
-bitcoin.style.visibility = "hidden";
+paypal.style.display = "none";
+bitcoin.style.display = "none";
 // creditCardBox.style.visibility = "hidden";
 // creditCardExpirationBox.style.visibility = "hidden";
 
 payment.addEventListener("change", (e) => {
   const clicked = e.target.value;
   if (clicked == "paypal") {
-    paypal.style.visibility = "visible";
-    bitcoin.style.visibility = "hidden";
-    creditCardBox.style.visibility = "hidden";
-    creditCardExpirationBox.style.visibility = "hidden";
+    paypal.style.display = "block";
+    bitcoin.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
   } else if (clicked == "bitcoin") {
-    bitcoin.style.visibility = "visible";
-    paypal.style.visibility = "hidden";
-    creditCardBox.style.visibility = "hidden";
-    creditCardExpirationBox.style.visibility = "hidden";
+    bitcoin.style.display = "block";
+    paypal.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
   } else if (clicked == "credit-card") {
-    creditCardBox.style.visibility = "visible";
-    creditCardExpirationBox.style.visibility = "visible";
-    paypal.style.visibility = "hidden";
-    bitcoin.style.visibility = "hidden";
+    creditCardBox.style.display = "block";
+    creditCardExpirationBox.style.display = "block";
+    paypal.style.display = "none";
+    bitcoin.style.display = "none";
   }
 });
-
 
 // This part processes form validation
 
@@ -125,6 +126,7 @@ const email = document.querySelector("#email");
 const creditCardNumber = document.querySelector("#cc-num");
 const creditCardZip = document.querySelector("#zip");
 const creditCardCvv = document.querySelector("#cvv");
+const activitiesBox = document.querySelector("#activities-box");
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
@@ -162,26 +164,34 @@ function CvvVerifier(creditCardCvv) {
   return CvvNumberIsValid;
 }
 
-function validationPass(element) {
-  element.parentElement.classList.add('valid');
-  element.parentElement.classList.remove('not-valid');
-  element.parentElement.lastElementChild.display = 'none';
- }
+function activitiesVerifier(activitiesBox) {
+  const activityValue = activitiesBox.querySelector('[type="checkbox"]').value;
+  console.log(activityValue);
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+  }
+}
 
- function validationFail(element){
-   element.parentElement.classList.add('not-valid');
-   element.parentElement.classList.remove('valid');
-   element.parentElement.lastElementChild.visibility = 'visible';
- }
+function validationPass(element) {
+  element.parentElement.classList.add("valid");
+  element.parentElement.classList.remove("not-valid");
+  element.parentElement.lastElementChild.display = "none";
+}
+
+function validationFail(element) {
+  element.parentElement.classList.add("not-valid");
+  element.parentElement.classList.remove("valid");
+  element.parentElement.lastElementChild.visibility = "visible";
+}
 
 form.addEventListener("submit", (e) => {
   let name_Is_Valid = nameVerifier(e.target);
   const clicked1 = document.querySelector("#name");
   const hightlightedName = clicked1.parentElement;
   if (name_Is_Valid != true) {
-     validationFail(hightlightedName);
+    validationFail(hightlightedName);
     e.preventDefault();
-    } else {
+  } else {
     validationPass(hightlightedName);
   }
 
@@ -189,9 +199,9 @@ form.addEventListener("submit", (e) => {
   const clicked2 = document.querySelector("#email");
   const hightlightedEmail = clicked2.parentElement;
   if (email_Is_Valid != true) {
-     validationFail(hightlightedEmail);
+    validationFail(hightlightedEmail);
     e.preventDefault();
-    } else {
+  } else {
     validationPass(hightlightedEmail);
   }
 
@@ -199,45 +209,49 @@ form.addEventListener("submit", (e) => {
   const clicked3 = document.querySelector("#cc-num");
   const hightlightedCcNumber = clicked3.parentElement;
   if (creditCardNumber_Is_Valid != true) {
-     validationFail(hightlightedCcNumber);
+    validationFail(hightlightedCcNumber);
     e.preventDefault();
-    } else {
+  } else {
     validationPass(hightlightedCcNumber);
   }
-  
+
   let creditCardZip_Is_Valid = zipVerifier(e.target);
   const clicked4 = document.querySelector("#zip");
-    const hightlightedZip = clicked4.parentElement;
+  const hightlightedZip = clicked4.parentElement;
   if (creditCardZip_Is_Valid != true) {
-     validationFail(hightlightedZip);
+    validationFail(hightlightedZip);
     e.preventDefault();
-    } else {
+  } else {
     validationPass(hightlightedZip);
   }
 
   let creditCardCvv_Is_Valid = CvvVerifier(e.target);
-    const clicked5 = document.querySelector("#cvv");
-    const hightlightedCvv = clicked5.parentElement;
+  const clicked5 = document.querySelector("#cvv");
+  const hightlightedCvv = clicked5.parentElement;
   if (creditCardCvv_Is_Valid != true) {
-     validationFail(hightlightedCvv);
+    validationFail(hightlightedCvv);
     e.preventDefault();
-    } else {
+  } else {
     validationPass(hightlightedCvv);
+  }
+
+  const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
+  let totalActivitiesChecked = 0;
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      totalActivitiesChecked += 1;
+      console.log(totalActivitiesChecked);
+    } else if (totalActivitiesChecked === 0) {
+      e.preventDefault();
+    }
   }
 });
 
-// the below manages checkbox visibility on "focus" or "blur"
+// activitiesR.addEventListener("click", (e) => {
+// for (let i = 0; i < checkboxes.length; i++) {
 
-const checkboxes = document.querySelectorAll('[type="checkbox"]');
-for (let i = 0; i < checkboxes.length; i++) {
- checkboxes[i].addEventListener('focus', (e) => { 
- checkboxes[i].parentElement.classList.add('focus');
- })
- checkboxes[i].addEventListener('blur', (e) => {
- checkboxes[i].parentElement.classList.remove('focus');
- }
- )}
+// if (checkboxes[i].checked) {
+// totalActivitiesChecked += 1;
 
-
-
-
+// }}
+// })
