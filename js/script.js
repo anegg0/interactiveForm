@@ -43,29 +43,8 @@ selectorDesigns.addEventListener("change", (e) => {
 /* This listener will evaluates the data-day-and-time of ticked checkboxes and disable checkboxes that 
 match concurrent time slots
 */
-// Hi everyone, I am trying to finish module 3 project but I've been stuck on the activity/checkbox part for about two days now.
 
-// My objective is to disable checkboxes which timeline conflicts with the ones that have been checked.
-// My  code does part of that, but there are many issues, 
-// const registerActivities = document.querySelector("#activities-box");
-// registerActivities.addEventListener("click", (e) => {
-//   const clicked = e.target;
-//   // console.log(clicked.checked)
-//   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
-//   const activities = registerActivities.children;
-//   for (let i = 0; i < activities.length; i++) {
-//     if (clickedTypeTime === activities[i].children[2].innerHTML && activities[i].children[0].checked !== true) {
-//       activities[i].children[0].disabled="true";
-//       activities[i].children[0].parentElement.classList.add("disabled");
-//       console.log(activities[i].children[0].checked)
-//     }
-//     if ( activities[i].children[0].checked !== true) {
-//       activities[i].children[0].disabled="false";
-//       activities[i].children[0].parentElement.classList.remove("disabled");
-
-//   }
-//   }
-// });
+// 
 
 // This listener evaluates the added cost of selected activities
 
