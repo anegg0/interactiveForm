@@ -43,25 +43,29 @@ selectorDesigns.addEventListener("change", (e) => {
 /* This listener will evaluates the data-day-and-time of ticked checkboxes and disable checkboxes that 
 match concurrent time slots
 */
-const registerActivities = document.querySelector("#activities-box");
+const registerActivities = document.querySelector("#activities");
 registerActivities.addEventListener("click", (e) => {
   const clicked = e.target;
-  // console.log(clicked.checked)
+  if (clicked.checked) {
+    clicked.parentElement.classList.add("error-border")
+
+  }
   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
-  const activities = registerActivities.children;
+  const activities = registerActivities.getElementsByTagName('label');
   for (let i = 0; i < activities.length; i++) {
-    if (clickedTypeTime === activities[i].children[2].innerHTML && activities[i].children[0].checked !== true) {
+    if ( activities[i].children[2].innerHTML ===  clickedTypeTime  && activities[i].children[0] !== clicked) {
+    // if (clickedTypeTime === activities[i].children[2].innerHTML) {
       activities[i].children[0].disabled="true";
       activities[i].children[0].parentElement.classList.add("disabled");
       console.log(activities[i].children[0].checked)
     }
-    if ( activities[i].children[0].checked !== true) {
-      activities[i].children[0].disabled="false";
-      activities[i].children[0].parentElement.classList.remove("disabled");
-
+  //   if ( activities[i].children[0].checked !== true) {
+  //     activities[i].children[0].disabled="false";
+  //     activities[i].children[0].parentElement.classList.remove("disabled");
+  // }
   }
   }
-});
+);
 
 // This listener evaluates the added cost of selected activities
 
