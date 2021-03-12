@@ -220,17 +220,10 @@ form.addEventListener("submit", (e) => {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
       console.log(totalActivitiesChecked);
-    } else if (totalActivitiesChecked === 0) {
+    }
+}
+    if (totalActivitiesChecked === 0) {
       e.preventDefault();
     }
-  }
 });
 
-// activitiesR.addEventListener("click", (e) => {
-// for (let i = 0; i < checkboxes.length; i++) {
-
-// if (checkboxes[i].checked) {
-// totalActivitiesChecked += 1;
-
-// }}
-// })
