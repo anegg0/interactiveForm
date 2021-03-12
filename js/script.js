@@ -46,28 +46,41 @@ match concurrent time slots
 const registerActivities = document.querySelector("#activities");
 registerActivities.addEventListener("click", (e) => {
   const clicked = e.target;
-  if (clicked.checked) {
-    clicked.parentElement.classList.add("error-border")
-
-  }
   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
-  const activities = registerActivities.getElementsByTagName('label');
+  const activities = registerActivities.getElementsByTagName("label");
   for (let i = 0; i < activities.length; i++) {
-    if ( (activities[i].children[2].innerHTML ===  clickedTypeTime)  && (activities[i].children[0] !== clicked)) {
-    // if (clickedTypeTime === activities[i].children[2].innerHTML) {
-      activities[i].children[0].disabled=true;
+    if (
+      activities[i].children[2].innerHTML === clickedTypeTime &&
+      activities[i].children[0] !== clicked
+    ) {
+      activities[i].children[0].disabled = true;
       activities[i].children[0].parentElement.classList.add("disabled");
     }
-    if (( activities[i].children[2].innerHTML === clickedTypeTime ) && (!clicked.checked)) {
-    // if ((  !clicked.checked ) && (activities[i].children[0].getAttribute('.disabled') === true && !jactivities[i].children[0].checked) {
-      activities[i].children[0].disabled=false;
+    if (
+      activities[i].children[2].innerHTML === clickedTypeTime &&
+      !clicked.checked
+    ) {
+      activities[i].children[0].disabled = false;
       activities[i].children[0].parentElement.classList.remove("disabled");
-      
+    }
   }
-  }
-  }
-);
+});
 
+//These listeners will enable enhanced visibility on the selected elements
+
+const fieldset = document.querySelector("#activities");
+const checkbox = document.querySelectorAll('[type="checkbox"]');
+console.log("checkbox length is: " + checkbox[1]);
+for (let i = 0; i < checkbox.length; i++) {
+  checkbox[i].addEventListener("focus", (e) => {
+    checkbox[i].parentElement.classList.add("focus"), true;
+  });
+
+  checkbox[i].addEventListener("blur", (e) => {
+    checkbox[i].parentElement.classList.remove("focus"), true;
+    console.log('bleure autant que voudras, je ne reviendrai pas')
+  });
+}
 // This listener evaluates the added cost of selected activities
 
 const activitiesR = document.querySelector("#activities");
@@ -96,8 +109,6 @@ const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.display = "none";
 bitcoin.style.display = "none";
-// creditCardBox.style.visibility = "hidden";
-// creditCardExpirationBox.style.visibility = "hidden";
 
 payment.addEventListener("change", (e) => {
   const clicked = e.target.value;
@@ -212,6 +223,7 @@ form.addEventListener("submit", (e) => {
   if (creditCardNumber_Is_Valid != true) {
     validationFail(hightlightedCcNumber);
     e.preventDefault();
+    clicked3.parentElement.classList.add();
   } else {
     validationPass(hightlightedCcNumber);
   }
@@ -231,6 +243,7 @@ form.addEventListener("submit", (e) => {
   const hightlightedCvv = clicked5.parentElement;
   if (creditCardCvv_Is_Valid != true) {
     validationFail(hightlightedCvv);
+    clicked5.parentElement.classList.add("activities-hint");
     e.preventDefault();
   } else {
     validationPass(hightlightedCvv);
@@ -243,9 +256,8 @@ form.addEventListener("submit", (e) => {
       totalActivitiesChecked += 1;
       console.log(totalActivitiesChecked);
     }
-}
-    if (totalActivitiesChecked === 0) {
-      e.preventDefault();
-    }
+  }
+  if (totalActivitiesChecked === 0) {
+    e.preventDefault();
+  }
 });
-
