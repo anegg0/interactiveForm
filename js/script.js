@@ -72,13 +72,13 @@ const fieldset = document.querySelector("#activities");
 const checkbox = document.querySelectorAll('[type="checkbox"]');
 console.log("checkbox length is: " + checkbox[1]);
 for (let i = 0; i < checkbox.length; i++) {
-  checkbox[i].addEventListener("focus", (e) => {
-    checkbox[i].parentElement.classList.add("focus"), true;
+  checkbox[i].addEventListener("blur", (e) => {
+    checkbox[i].parentElement.classList.remove("focus");
+    console.log('bleure autant que voudras, je ne reviendrai pas')
   });
 
-  checkbox[i].addEventListener("blur", (e) => {
-    checkbox[i].parentElement.classList.remove("focus"), true;
-    console.log('bleure autant que voudras, je ne reviendrai pas')
+  checkbox[i].addEventListener("focus", (e) => {
+    checkbox[i].parentElement.classList.add("focus");
   });
 }
 // This listener evaluates the added cost of selected activities
@@ -193,7 +193,7 @@ function validationPass(element) {
 function validationFail(element) {
   element.parentElement.classList.add("not-valid");
   element.parentElement.classList.remove("valid");
-  element.parentElement.lastElementChild.visibility = "visible";
+  element.parentElement.lastElementChild.visibility = "hidden";
 }
 
 form.addEventListener("submit", (e) => {
@@ -243,7 +243,6 @@ form.addEventListener("submit", (e) => {
   const hightlightedCvv = clicked5.parentElement;
   if (creditCardCvv_Is_Valid != true) {
     validationFail(hightlightedCvv);
-    clicked5.parentElement.classList.add("activities-hint");
     e.preventDefault();
   } else {
     validationPass(hightlightedCvv);
