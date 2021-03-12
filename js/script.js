@@ -53,16 +53,17 @@ registerActivities.addEventListener("click", (e) => {
   const clickedTypeTime = clicked.getAttribute("data-day-and-time");
   const activities = registerActivities.getElementsByTagName('label');
   for (let i = 0; i < activities.length; i++) {
-    if ( activities[i].children[2].innerHTML ===  clickedTypeTime  && activities[i].children[0] !== clicked) {
+    if ( (activities[i].children[2].innerHTML ===  clickedTypeTime)  && (activities[i].children[0] !== clicked)) {
     // if (clickedTypeTime === activities[i].children[2].innerHTML) {
-      activities[i].children[0].disabled="true";
+      activities[i].children[0].disabled=true;
       activities[i].children[0].parentElement.classList.add("disabled");
-      console.log(activities[i].children[0].checked)
     }
-  //   if ( activities[i].children[0].checked !== true) {
-  //     activities[i].children[0].disabled="false";
-  //     activities[i].children[0].parentElement.classList.remove("disabled");
-  // }
+    if (( activities[i].children[2].innerHTML === clickedTypeTime ) && (!clicked.checked)) {
+    // if ((  !clicked.checked ) && (activities[i].children[0].getAttribute('.disabled') === true && !jactivities[i].children[0].checked) {
+      activities[i].children[0].disabled=false;
+      activities[i].children[0].parentElement.classList.remove("disabled");
+      
+  }
   }
   }
 );
