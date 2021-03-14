@@ -2,8 +2,6 @@
 const nameElement = document.querySelector("#name");
 nameElement.focus();
 
-// const jobRole = document.querySelector("#payment");
-
 const jobOther = document.querySelector("#other-job-role");
 jobOther.style.display = "none";
 const selectorJobs = document.querySelector("#title");
@@ -66,15 +64,13 @@ registerActivities.addEventListener("click", (e) => {
   }
 });
 
-//These listeners will enable enhanced visibility on the selected elements
+//These listeners will enable enhanced visibility on the selected fields
 
 const fieldset = document.querySelector("#activities");
 const checkbox = document.querySelectorAll('[type="checkbox"]');
-console.log("checkbox length is: " + checkbox[1]);
 for (let i = 0; i < checkbox.length; i++) {
   checkbox[i].addEventListener("blur", (e) => {
     checkbox[i].parentElement.classList.remove("focus");
-    console.log('bleure autant que voudras, je ne reviendrai pas')
   });
 
   checkbox[i].addEventListener("focus", (e) => {
@@ -99,7 +95,7 @@ activitiesR.addEventListener("change", (e) => {
   const activities = activitiesR.children;
 });
 
-// this part hides/shows payment method fields details depending on the payment mode selected
+// this part hides/shows payment method fields details depending on the selected payment mode
 
 const payment = document.querySelector("#payment");
 
@@ -178,7 +174,6 @@ function CvvVerifier(creditCardCvv) {
 
 function activitiesVerifier(activitiesBox) {
   const activityValue = activitiesBox.querySelector('[type="checkbox"]').value;
-  console.log(activityValue);
   for (let i = 0; i < array.length; i++) {
     const element = array[i];
   }
@@ -228,14 +223,11 @@ form.addEventListener("submit", (e) => {
     validationPass(hightlightedCcNumber);
   }
 
-// wip --------------------------------
-
   let creditCardZip_Is_Valid = zipVerifier(e.target);
   const clicked4 = document.querySelector("#zip");
   const hightlightedZip = clicked4.parentElement;
   if (creditCardZip_Is_Valid != true) {
     validationFail(hightlightedZip);
-  console.log('element is: ' + hightlightedZip)
     e.preventDefault();
   } else {
     validationPass(hightlightedZip);
@@ -256,7 +248,6 @@ form.addEventListener("submit", (e) => {
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
-      console.log(totalActivitiesChecked);
     }
   }
   if (totalActivitiesChecked === 0) {
