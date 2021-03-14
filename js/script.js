@@ -187,13 +187,13 @@ function activitiesVerifier(activitiesBox) {
 function validationPass(element) {
   element.classList.add("valid");
   element.classList.remove("not-valid");
-  element.lastElementChild.style.visibility = "hidden";
+  element.lastElementChild.style.display = "none";
 }
 
 function validationFail(element) {
   element.classList.add("not-valid");
   element.classList.remove("valid");
-  element.lastElementChild.style.visibility = "visible";
+  element.lastElementChild.style.display = "block";
 }
 
 form.addEventListener("submit", (e) => {
