@@ -185,15 +185,15 @@ function activitiesVerifier(activitiesBox) {
 }
 
 function validationPass(element) {
-  element.parentElement.classList.add("valid");
-  element.parentElement.classList.remove("not-valid");
-  element.parentElement.lastElementChild.display = "none";
+  element.classList.add("valid");
+  element.classList.remove("not-valid");
+  element.lastElementChild.style.visibility = "hidden";
 }
 
 function validationFail(element) {
-  element.parentElement.classList.add("not-valid");
-  element.parentElement.classList.remove("valid");
-  element.parentElement.lastElementChild.visibility = "hidden";
+  element.classList.add("not-valid");
+  element.classList.remove("valid");
+  element.lastElementChild.style.visibility = "visible";
 }
 
 form.addEventListener("submit", (e) => {
@@ -228,11 +228,14 @@ form.addEventListener("submit", (e) => {
     validationPass(hightlightedCcNumber);
   }
 
+// wip --------------------------------
+
   let creditCardZip_Is_Valid = zipVerifier(e.target);
   const clicked4 = document.querySelector("#zip");
   const hightlightedZip = clicked4.parentElement;
   if (creditCardZip_Is_Valid != true) {
     validationFail(hightlightedZip);
+  console.log('element is: ' + hightlightedZip)
     e.preventDefault();
   } else {
     validationPass(hightlightedZip);
