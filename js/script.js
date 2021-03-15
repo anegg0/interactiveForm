@@ -64,7 +64,7 @@ registerActivities.addEventListener("click", (e) => {
   }
 });
 
-//These listeners will enable enhanced visibility on the selected fields
+//These listeners will enable enhanced visibility on the selected activities
 
 const fieldset = document.querySelector("#activities");
 const checkbox = document.querySelectorAll('[type="checkbox"]');
@@ -168,7 +168,7 @@ function zipVerifier(creditCardZip) {
 function CvvVerifier(creditCardCvv) {
   const creditCardCvvValue = creditCardCvv.getElementsByTagName("INPUT")[12]
     .value;
-  const CvvNumberIsValid = /^[0-9]{3,4}$/.test(creditCardCvvValue);
+  const CvvNumberIsValid = /^[0-9]{3}$/.test(creditCardCvvValue);
   return CvvNumberIsValid;
 }
 
@@ -245,12 +245,35 @@ form.addEventListener("submit", (e) => {
 
   const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
   let totalActivitiesChecked = 0;
+  const hint = document.querySelector('#activities-hint')
+  console.log(hint)
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
+      console.log(totalActivitiesChecked)
     }
   }
   if (totalActivitiesChecked === 0) {
+  
+  console.log('did not check activities')
+  hint.parentElement.classList.add("not-valid");
+  hint.parentElement.classList.remove("valid");
+  hint.parentElement.lastElementChild.style.display = "inline";
     e.preventDefault();
   }
 });
+// const activitiesR = document.querySelector("#activities");
+// const total = document.querySelector("#activities-cost");
+// let totalCost = 0;
+// activitiesR.addEventListener("change", (e) => {
+//   const clicked = e.target;
+//   let clickedCost = clicked.getAttribute("data-cost");
+//   clickedCost = Number(clickedCost);
+//   if (clicked.checked) {
+//     totalCost += clickedCost;
+//   } else {
+//     totalCost -= clickedCost;
+//   }
+//   total.textContent = `Total: $${totalCost}`;
+//   const activities = activitiesR.children;
+// });
