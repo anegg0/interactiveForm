@@ -144,7 +144,7 @@ function nameVerifier(nameForm) {
 
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
-  const emailIsValid = /[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
+  const emailIsValid = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(emailValue);
   return emailIsValid;
 }
 
@@ -262,18 +262,3 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
   }
 });
-// const activitiesR = document.querySelector("#activities");
-// const total = document.querySelector("#activities-cost");
-// let totalCost = 0;
-// activitiesR.addEventListener("change", (e) => {
-//   const clicked = e.target;
-//   let clickedCost = clicked.getAttribute("data-cost");
-//   clickedCost = Number(clickedCost);
-//   if (clicked.checked) {
-//     totalCost += clickedCost;
-//   } else {
-//     totalCost -= clickedCost;
-//   }
-//   total.textContent = `Total: $${totalCost}`;
-//   const activities = activitiesR.children;
-// });
