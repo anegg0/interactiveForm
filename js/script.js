@@ -11,7 +11,7 @@ selectorJobs.addEventListener("change", (e) => {
   if (e.target.value == "other") {
     jobOther.style.display = "block";
   } else {
-    jobOther.style.display = "block";
+    jobOther.style.display = "none";
   }
 });
 
@@ -38,7 +38,7 @@ selectorDesigns.addEventListener("change", (e) => {
       heartJS[i].hidden = false;
       jsPuns[i].hidden = true;
       jsPuns[i].selected = false;
-   }
+    }
   }
 });
 
@@ -142,7 +142,8 @@ const activitiesBox = document.querySelector("#activities-box");
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
-  const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
+  // const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
+  const nameIsValid = /^.+$/.test(nameValue);
   return nameIsValid;
 }
 // regex formula credits to www.ihateregex.io
@@ -179,12 +180,12 @@ function CvvVerifier(creditCardCvv) {
   return CvvNumberIsValid;
 }
 
-function activitiesVerifier(activitiesBox) {
-  const activityValue = activitiesBox.querySelector('[type="checkbox"]').value;
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-  }
-}
+// function activitiesVerifier(activitiesBox) {
+//   const activityValue = activitiesBox.querySelector('[type="checkbox"]').value;
+//   for (let i = 0; i < array.length; i++) {
+//     const element = array[i];
+//   }
+// }
 
 function validationPass(element) {
   element.classList.add("valid");
@@ -256,13 +257,13 @@ form.addEventListener("submit", (e) => {
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
-      console.log(totalActivitiesChecked);
     }
-  }
-  if (totalActivitiesChecked === 0) {
-    hint.parentElement.classList.add("not-valid");
-    hint.parentElement.classList.remove("valid");
-    hint.parentElement.lastElementChild.style.display = "inline";
-    e.preventDefault();
+    if (totalActivitiesChecked === 0) {
+      console.log(totalActivitiesChecked);
+      hint.parentElement.classList.add("not-valid");
+      hint.parentElement.classList.remove("valid");
+      hint.parentElement.lastElementChild.style.display = "inline";
+      e.preventDefault();
+    }
   }
 });
