@@ -10,6 +10,8 @@ const allJobs = document.querySelectorAll("#job");
 selectorJobs.addEventListener("change", (e) => {
   if (e.target.value == "other") {
     jobOther.style.display = "block";
+  } else {
+jobOther.style.display = "none";
   }
 });
 
@@ -23,15 +25,16 @@ selectorDesigns.addEventListener("change", (e) => {
   const jsPuns = document.querySelectorAll('[data-theme="js puns"]');
   const heartJS = document.querySelectorAll('[data-theme="heart js"]');
 
-  if (e.target.value == "js puns") {
+  if (e.target.value === "js puns") {
     for (let i = 0; i < jsPuns.length; i++) {
       colorDiv.style.display = "block";
       jsPuns[i].style.display = "block";
       heartJS[i].style.display = "none";
     }
-  } else if (e.target.value == "heart js") {
+  } else if (e.target.value === "heart js") {
     for (let i = 0; i < heartJS.length; i++) {
       colorDiv.style.display = "block";
+      heartJS[i].style.display = "block";
       heartJS[i].style.display = "block";
       jsPuns[i].style.display = "none";
     }
@@ -64,7 +67,7 @@ registerActivities.addEventListener("click", (e) => {
   }
 });
 
-//These listeners will enable enhanced visibility on the selected activities
+//These listeners will enable focus on the selected activities
 
 const fieldset = document.querySelector("#activities");
 const checkbox = document.querySelectorAll('[type="checkbox"]');
@@ -141,13 +144,14 @@ function nameVerifier(nameForm) {
   const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
   return nameIsValid;
 }
-
+// regex formula credits to www.ihateregex.io
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
   const emailIsValid = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(emailValue);
   return emailIsValid;
 }
 
+// regex formula credits to www.ihateregex.io
 function cardNumberVerifier(creditCardNumber) {
   const creditCardNumberValue = creditCardNumber.getElementsByTagName(
     "INPUT"
@@ -246,7 +250,6 @@ form.addEventListener("submit", (e) => {
   const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
   let totalActivitiesChecked = 0;
   const hint = document.querySelector('#activities-hint')
-  console.log(hint)
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
@@ -255,7 +258,6 @@ form.addEventListener("submit", (e) => {
   }
   if (totalActivitiesChecked === 0) {
   
-  console.log('did not check activities')
   hint.parentElement.classList.add("not-valid");
   hint.parentElement.classList.remove("valid");
   hint.parentElement.lastElementChild.style.display = "inline";
