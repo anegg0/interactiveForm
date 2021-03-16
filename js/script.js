@@ -11,7 +11,7 @@ selectorJobs.addEventListener("change", (e) => {
   if (e.target.value == "other") {
     jobOther.style.display = "block";
   } else {
-jobOther.style.display = "none";
+    jobOther.style.display = "block";
   }
 });
 
@@ -28,16 +28,17 @@ selectorDesigns.addEventListener("change", (e) => {
   if (e.target.value === "js puns") {
     for (let i = 0; i < jsPuns.length; i++) {
       colorDiv.style.display = "block";
-      jsPuns[i].style.display = "block";
-      heartJS[i].style.display = "none";
+      jsPuns[i].hidden = false;
+      heartJS[i].selected = false;
+      heartJS[i].hidden = true;
     }
   } else if (e.target.value === "heart js") {
     for (let i = 0; i < heartJS.length; i++) {
       colorDiv.style.display = "block";
-      heartJS[i].style.display = "block";
-      heartJS[i].style.display = "block";
-      jsPuns[i].style.display = "none";
-    }
+      heartJS[i].hidden = false;
+      jsPuns[i].hidden = true;
+      jsPuns[i].selected = false;
+   }
   }
 });
 
@@ -147,7 +148,9 @@ function nameVerifier(nameForm) {
 // regex formula credits to www.ihateregex.io
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
-  const emailIsValid = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(emailValue);
+  const emailIsValid = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(
+    emailValue
+  );
   return emailIsValid;
 }
 
@@ -249,18 +252,17 @@ form.addEventListener("submit", (e) => {
 
   const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
   let totalActivitiesChecked = 0;
-  const hint = document.querySelector('#activities-hint')
+  const hint = document.querySelector("#activities-hint");
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
       totalActivitiesChecked += 1;
-      console.log(totalActivitiesChecked)
+      console.log(totalActivitiesChecked);
     }
   }
   if (totalActivitiesChecked === 0) {
-  
-  hint.parentElement.classList.add("not-valid");
-  hint.parentElement.classList.remove("valid");
-  hint.parentElement.lastElementChild.style.display = "inline";
+    hint.parentElement.classList.add("not-valid");
+    hint.parentElement.classList.remove("valid");
+    hint.parentElement.lastElementChild.style.display = "inline";
     e.preventDefault();
   }
 });
