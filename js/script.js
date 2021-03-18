@@ -180,12 +180,6 @@ function CvvVerifier(creditCardCvv) {
   return CvvNumberIsValid;
 }
 
-// function activitiesVerifier(activitiesBox) {
-//   const activityValue = activitiesBox.querySelector('[type="checkbox"]').value;
-//   for (let i = 0; i < array.length; i++) {
-//     const element = array[i];
-//   }
-// }
 
 function validationPass(element) {
   element.classList.add("valid");
@@ -256,14 +250,15 @@ form.addEventListener("submit", (e) => {
   const hint = document.querySelector("#activities-hint");
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-      totalActivitiesChecked += 1;
-    }
-    if (totalActivitiesChecked === 0) {
-      console.log(totalActivitiesChecked);
+      totalActivitiesChecked += 1;}}
+      if (totalActivitiesChecked !== 0){
+      hint.parentElement.classList.remove("not-valid");
+      hint.parentElement.classList.add("valid");
+      hint.parentElement.lastElementChild.style.display = "none";
+    } else if (totalActivitiesChecked == 0) {
       hint.parentElement.classList.add("not-valid");
       hint.parentElement.classList.remove("valid");
       hint.parentElement.lastElementChild.style.display = "inline";
       e.preventDefault();
     }
-  }
 });
