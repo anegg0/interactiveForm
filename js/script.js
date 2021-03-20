@@ -110,26 +110,6 @@ const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.display = "none";
 bitcoin.style.display = "none";
 
-payment.addEventListener("change", (e) => {
-  const clicked = e.target.value;
-  if (clicked == "paypal") {
-    paypal.style.display = "block";
-    bitcoin.style.display = "none";
-    creditCardBox.style.display = "none";
-    creditCardExpirationBox.style.display = "none";
-  } else if (clicked == "bitcoin") {
-    bitcoin.style.display = "block";
-    paypal.style.display = "none";
-    creditCardBox.style.display = "none";
-    creditCardExpirationBox.style.display = "none";
-  } else if (clicked == "credit-card") {
-    creditCardBox.style.display = "block";
-    creditCardExpirationBox.style.display = "block";
-    paypal.style.display = "none";
-    bitcoin.style.display = "none";
-  }
-});
-
 // This part processes form validation
 
 const form = document.querySelector("form");
@@ -160,7 +140,7 @@ function cardNumberVerifier(creditCardNumber) {
   const creditCardNumberValue = creditCardNumber.getElementsByTagName(
     "INPUT"
   )[10].value;
-  const creditCardNumberIsValid = /(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\d{3})\d{11}$)/.test(
+  const creditCardNumberIsValid = /(^(\d{13,16})?$)/.test(
     creditCardNumberValue
   );
   return creditCardNumberIsValid;
@@ -192,6 +172,28 @@ function validationFail(element) {
   element.classList.remove("valid");
   element.lastElementChild.style.display = "block";
 }
+
+payment.addEventListener("change", (e) => {
+  const clicked = e.target.value;
+  if (clicked == "paypal") {
+    paypal.style.display = "block";
+    bitcoin.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
+  } else if (clicked == "bitcoin") {
+    bitcoin.style.display = "block";
+    paypal.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
+    e.preventDefault
+  } else if (clicked == "credit-card") {
+    creditCardBox.style.display = "block";
+    creditCardExpirationBox.style.display = "block";
+    paypal.style.display = "none";
+    bitcoin.style.display = "none";
+    e.preventDefault
+  }
+});
 
 form.addEventListener("submit", (e) => {
   let name_Is_Valid = nameVerifier(e.target);
