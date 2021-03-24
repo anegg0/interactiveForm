@@ -102,14 +102,37 @@ activitiesR.addEventListener("change", (e) => {
 // this part hides/shows payment method fields details depending on the selected payment mode
 
 const payment = document.querySelector("#payment");
-
 const paypal = document.querySelector(".paypal");
 const bitcoin = document.querySelector(".bitcoin");
 const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.display = "none";
 bitcoin.style.display = "none";
-
+let chosenPaymentMethod;  
+payment.addEventListener("change", (e) => {
+  const clicked = e.target.value;
+  if (clicked == "paypal") {
+    paypal.style.display = "block";
+    bitcoin.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
+    chosenPaymentMethod = 'paypal';
+    return chosenPaymentMethod
+  } else if (clicked == "bitcoin") {
+    bitcoin.style.display = "block";
+    paypal.style.display = "none";
+    creditCardBox.style.display = "none";
+    creditCardExpirationBox.style.display = "none";
+    chosenPaymentMethod = 'bitcoin';
+    return chosenPaymentMethod
+  } else if (clicked == "credit-card") {
+    creditCardBox.style.display = "block";
+    creditCardExpirationBox.style.display = "block";
+    paypal.style.display = "none";
+    bitcoin.style.display = "none";
+    return chosenPaymentMethod
+  }
+});
 // This part processes form validation
 
 const form = document.querySelector("form");
@@ -119,10 +142,22 @@ const creditCardNumber = document.querySelector("#cc-num");
 const creditCardZip = document.querySelector("#zip");
 const creditCardCvv = document.querySelector("#cvv");
 const activitiesBox = document.querySelector("#activities-box");
+const paymentMethod = document.querySelector("#payment");
+
+// // this function verifies which type of payment is being used
+// function paymentMethodVerifier(paymentMethod) {
+//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT")[0].value; 
+//  const paymentMethodIsValid = function isCreditCard(paymentMethodValue) {
+//    if (paymentMethodValue === 'credit-card')
+//    return true
+//  }
+// }
+
+//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT")[0].value; 
+//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT").value; 
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
-  // const nameIsValid = /^[a-zA-Z]+ ?[a-zA-Z]*? ?[a-zA-Z]*?$/.test(nameValue);
   const nameIsValid = /^.+$/.test(nameValue);
   return nameIsValid;
 }
@@ -135,7 +170,6 @@ function emailVerifier(email) {
   return emailIsValid;
 }
 
-// regex formula credits to www.ihateregex.io
 function cardNumberVerifier(creditCardNumber) {
   const creditCardNumberValue = creditCardNumber.getElementsByTagName(
     "INPUT"
@@ -173,27 +207,6 @@ function validationFail(element) {
   element.lastElementChild.style.display = "block";
 }
 
-payment.addEventListener("change", (e) => {
-  const clicked = e.target.value;
-  if (clicked == "paypal") {
-    paypal.style.display = "block";
-    bitcoin.style.display = "none";
-    creditCardBox.style.display = "none";
-    creditCardExpirationBox.style.display = "none";
-  } else if (clicked == "bitcoin") {
-    bitcoin.style.display = "block";
-    paypal.style.display = "none";
-    creditCardBox.style.display = "none";
-    creditCardExpirationBox.style.display = "none";
-    e.preventDefault
-  } else if (clicked == "credit-card") {
-    creditCardBox.style.display = "block";
-    creditCardExpirationBox.style.display = "block";
-    paypal.style.display = "none";
-    bitcoin.style.display = "none";
-    e.preventDefault
-  }
-});
 
 form.addEventListener("submit", (e) => {
   let name_Is_Valid = nameVerifier(e.target);
@@ -247,6 +260,7 @@ form.addEventListener("submit", (e) => {
     validationPass(hightlightedCvv);
   }
 
+console.log('payment method is' + chosenPaymentMethod);
   const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
   let totalActivitiesChecked = 0;
   const hint = document.querySelector("#activities-hint");
@@ -263,4 +277,11 @@ form.addEventListener("submit", (e) => {
       hint.parentElement.lastElementChild.style.display = "inline";
       e.preventDefault();
     }
+
+if (chosenPaymentMethod !== 'credit-card') {
+ e.preventDefault 
+}
+    
+    
+  
 });
