@@ -1,4 +1,4 @@
-/* Variable to store form inputs -  */
+// /* Variable to store form inputs -  */
 const nameElement = document.querySelector("#name");
 nameElement.focus();
 
@@ -144,17 +144,6 @@ const creditCardCvv = document.querySelector("#cvv");
 const activitiesBox = document.querySelector("#activities-box");
 const paymentMethod = document.querySelector("#payment");
 
-// // this function verifies which type of payment is being used
-// function paymentMethodVerifier(paymentMethod) {
-//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT")[0].value; 
-//  const paymentMethodIsValid = function isCreditCard(paymentMethodValue) {
-//    if (paymentMethodValue === 'credit-card')
-//    return true
-//  }
-// }
-
-//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT")[0].value; 
-//  const paymentMethodValue = paymentMethod.getElementsByTagName("INPUT").value; 
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
@@ -229,6 +218,26 @@ form.addEventListener("submit", (e) => {
     validationPass(hightlightedEmail);
   }
 
+
+  const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
+  let totalActivitiesChecked = 0;
+  const hint = document.querySelector("#activities-hint");
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked) {
+      totalActivitiesChecked += 1;}}
+      if (totalActivitiesChecked !== 0){
+      hint.parentElement.classList.remove("not-valid");
+      hint.parentElement.classList.add("valid");
+      hint.parentElement.lastElementChild.style.display = "none";
+    } else if (totalActivitiesChecked == 0) {
+      hint.parentElement.classList.add("not-valid");
+      hint.parentElement.classList.remove("valid");
+      hint.parentElement.lastElementChild.style.display = "inline";
+      e.preventDefault();
+    }
+
+if (chosenPaymentMethod === 'credit-card') {
+
   let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
   const clicked3 = document.querySelector("#cc-num");
   const hightlightedCcNumber = clicked3.parentElement;
@@ -259,29 +268,8 @@ form.addEventListener("submit", (e) => {
   } else {
     validationPass(hightlightedCvv);
   }
-
-console.log('payment method is' + chosenPaymentMethod);
-  const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
-  let totalActivitiesChecked = 0;
-  const hint = document.querySelector("#activities-hint");
-  for (let i = 0; i < checkboxes.length; i++) {
-    if (checkboxes[i].checked) {
-      totalActivitiesChecked += 1;}}
-      if (totalActivitiesChecked !== 0){
-      hint.parentElement.classList.remove("not-valid");
-      hint.parentElement.classList.add("valid");
-      hint.parentElement.lastElementChild.style.display = "none";
-    } else if (totalActivitiesChecked == 0) {
-      hint.parentElement.classList.add("not-valid");
-      hint.parentElement.classList.remove("valid");
-      hint.parentElement.lastElementChild.style.display = "inline";
-      e.preventDefault();
-    }
-
-if (chosenPaymentMethod !== 'credit-card') {
- e.preventDefault 
 }
-    
+
     
   
 });
