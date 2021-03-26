@@ -130,6 +130,7 @@ payment.addEventListener("change", (e) => {
     creditCardExpirationBox.style.display = "block";
     paypal.style.display = "none";
     bitcoin.style.display = "none";
+    chosenPaymentMethod = 'credit-card'
     return chosenPaymentMethod
   }
 });
@@ -150,10 +151,11 @@ function nameVerifier(nameForm) {
   const nameIsValid = /^.+$/.test(nameValue);
   return nameIsValid;
 }
-// regex formula credits to www.ihateregex.io
+
+
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
-  const emailIsValid = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/.test(
+  const emailIsValid = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/.test(
     emailValue
   );
   return emailIsValid;
@@ -237,7 +239,6 @@ form.addEventListener("submit", (e) => {
     }
 
 if (chosenPaymentMethod === 'credit-card') {
-
   let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
   const clicked3 = document.querySelector("#cc-num");
   const hightlightedCcNumber = clicked3.parentElement;
