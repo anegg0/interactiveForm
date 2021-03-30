@@ -126,12 +126,11 @@ payment.addEventListener("change", (e) => {
     chosenPaymentMethod = 'bitcoin';
     return chosenPaymentMethod
   } else if (clicked == "credit-card") {
+    console.log(`cc's payment value is: ${payment.value}`)
     creditCardBox.style.display = "block";
     creditCardExpirationBox.style.display = "block";
     paypal.style.display = "none";
     bitcoin.style.display = "none";
-    chosenPaymentMethod = 'credit-card'
-    return chosenPaymentMethod
   }
 });
 // This part processes form validation
@@ -152,7 +151,8 @@ function nameVerifier(nameForm) {
   return nameIsValid;
 }
 
-
+// the regex used to verify emails is fairly simple (it is case sensitive) but will check subdomains or
+// "double suffixes" like co.uk
 function emailVerifier(email) {
   const emailValue = email.getElementsByTagName("INPUT")[1].value;
   const emailIsValid = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/.test(
@@ -237,8 +237,7 @@ form.addEventListener("submit", (e) => {
       hint.parentElement.lastElementChild.style.display = "inline";
       e.preventDefault();
     }
-
-if (chosenPaymentMethod === 'credit-card') {
+if (payment.value == 'credit-card') {
   let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
   const clicked3 = document.querySelector("#cc-num");
   const hightlightedCcNumber = clicked3.parentElement;
