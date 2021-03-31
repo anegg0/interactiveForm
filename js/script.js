@@ -126,7 +126,6 @@ payment.addEventListener("change", (e) => {
     chosenPaymentMethod = 'bitcoin';
     return chosenPaymentMethod
   } else if (clicked == "credit-card") {
-    console.log(`cc's payment value is: ${payment.value}`)
     creditCardBox.style.display = "block";
     creditCardExpirationBox.style.display = "block";
     paypal.style.display = "none";
