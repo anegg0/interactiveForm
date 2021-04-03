@@ -108,7 +108,7 @@ const creditCardExpirationBox = document.querySelector(".expiration-box");
 const creditCardBox = document.querySelector(".credit-card-box");
 paypal.style.display = "none";
 bitcoin.style.display = "none";
-let chosenPaymentMethod;  
+let chosenPaymentMethod;
 payment.addEventListener("change", (e) => {
   const clicked = e.target.value;
   if (clicked == "paypal") {
@@ -116,15 +116,15 @@ payment.addEventListener("change", (e) => {
     bitcoin.style.display = "none";
     creditCardBox.style.display = "none";
     creditCardExpirationBox.style.display = "none";
-    chosenPaymentMethod = 'paypal';
-    return chosenPaymentMethod
+    chosenPaymentMethod = "paypal";
+    return chosenPaymentMethod;
   } else if (clicked == "bitcoin") {
     bitcoin.style.display = "block";
     paypal.style.display = "none";
     creditCardBox.style.display = "none";
     creditCardExpirationBox.style.display = "none";
-    chosenPaymentMethod = 'bitcoin';
-    return chosenPaymentMethod
+    chosenPaymentMethod = "bitcoin";
+    return chosenPaymentMethod;
   } else if (clicked == "credit-card") {
     creditCardBox.style.display = "block";
     creditCardExpirationBox.style.display = "block";
@@ -142,7 +142,6 @@ const creditCardZip = document.querySelector("#zip");
 const creditCardCvv = document.querySelector("#cvv");
 const activitiesBox = document.querySelector("#activities-box");
 const paymentMethod = document.querySelector("#payment");
-
 
 function nameVerifier(nameForm) {
   const nameValue = nameForm.getElementsByTagName("INPUT")[0].value;
@@ -164,7 +163,8 @@ function cardNumberVerifier(creditCardNumber) {
   const creditCardNumberValue = creditCardNumber.getElementsByTagName(
     "INPUT"
   )[10].value;
-  const creditCardNumberIsValid = /(^(\d{13,16})?$)/.test(
+  // const creditCardNumberIsValid = /(^(\d{13,16})?$)/.test(
+  const creditCardNumberIsValid = /^[0-9]{13,16}$/.test(
     creditCardNumberValue
   );
   return creditCardNumberIsValid;
@@ -184,7 +184,6 @@ function CvvVerifier(creditCardCvv) {
   return CvvNumberIsValid;
 }
 
-
 function validationPass(element) {
   element.classList.add("valid");
   element.classList.remove("not-valid");
@@ -196,7 +195,6 @@ function validationFail(element) {
   element.classList.remove("valid");
   element.lastElementChild.style.display = "block";
 }
-
 
 form.addEventListener("submit", (e) => {
   let name_Is_Valid = nameVerifier(e.target);
@@ -219,56 +217,55 @@ form.addEventListener("submit", (e) => {
     validationPass(hightlightedEmail);
   }
 
-
   const checkboxes = activitiesBox.querySelectorAll('[type="checkbox"]');
   let totalActivitiesChecked = 0;
   const hint = document.querySelector("#activities-hint");
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked) {
-      totalActivitiesChecked += 1;}}
-      if (totalActivitiesChecked !== 0){
-      hint.parentElement.classList.remove("not-valid");
-      hint.parentElement.classList.add("valid");
-      hint.parentElement.lastElementChild.style.display = "none";
-    } else if (totalActivitiesChecked == 0) {
-      hint.parentElement.classList.add("not-valid");
-      hint.parentElement.classList.remove("valid");
-      hint.parentElement.lastElementChild.style.display = "inline";
-      e.preventDefault();
+      totalActivitiesChecked += 1;
     }
-if (payment.value == 'credit-card') {
-  let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
-  const clicked3 = document.querySelector("#cc-num");
-  const hightlightedCcNumber = clicked3.parentElement;
-  if (creditCardNumber_Is_Valid != true) {
-    validationFail(hightlightedCcNumber);
+  }
+  if (totalActivitiesChecked !== 0) {
+    hint.parentElement.classList.remove("not-valid");
+    hint.parentElement.classList.add("valid");
+    hint.parentElement.lastElementChild.style.display = "none";
+  } else if (totalActivitiesChecked == 0) {
+    hint.parentElement.classList.add("not-valid");
+    hint.parentElement.classList.remove("valid");
+    hint.parentElement.lastElementChild.style.display = "inline";
     e.preventDefault();
-    clicked3.parentElement.classList.add();
-  } else {
-    validationPass(hightlightedCcNumber);
   }
 
-  let creditCardZip_Is_Valid = zipVerifier(e.target);
-  const clicked4 = document.querySelector("#zip");
-  const hightlightedZip = clicked4.parentElement;
-  if (creditCardZip_Is_Valid != true) {
-    validationFail(hightlightedZip);
-    e.preventDefault();
-  } else {
-    validationPass(hightlightedZip);
-  }
+  if (payment.value == "credit-card") {
+    let creditCardNumber_Is_Valid = cardNumberVerifier(e.target);
+    const clicked3 = document.querySelector("#cc-num");
+    const hightlightedCcNumber = clicked3.parentElement;
+    if (creditCardNumber_Is_Valid != true) {
+      validationFail(hightlightedCcNumber);
+      e.preventDefault();
+      clicked3.parentElement.classList.add();
+    } else {
+      validationPass(hightlightedCcNumber);
+    }
 
-  let creditCardCvv_Is_Valid = CvvVerifier(e.target);
-  const clicked5 = document.querySelector("#cvv");
-  const hightlightedCvv = clicked5.parentElement;
-  if (creditCardCvv_Is_Valid != true) {
-    validationFail(hightlightedCvv);
-    e.preventDefault();
-  } else {
-    validationPass(hightlightedCvv);
-  }
-}
+    let creditCardZip_Is_Valid = zipVerifier(e.target);
+    const clicked4 = document.querySelector("#zip");
+    const hightlightedZip = clicked4.parentElement;
+    if (creditCardZip_Is_Valid != true) {
+      validationFail(hightlightedZip);
+      e.preventDefault();
+    } else {
+      validationPass(hightlightedZip);
+    }
 
-    
-  
+    let creditCardCvv_Is_Valid = CvvVerifier(e.target);
+    const clicked5 = document.querySelector("#cvv");
+    const hightlightedCvv = clicked5.parentElement;
+    if (creditCardCvv_Is_Valid != true) {
+      validationFail(hightlightedCvv);
+      e.preventDefault();
+    } else {
+      validationPass(hightlightedCvv);
+    }
+  }
 });
